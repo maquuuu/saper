@@ -28,10 +28,10 @@ void ustawFlage(char **mapa, int x, int y) {
 
 void odkryjPole(char **mapa, int x, int y) {
     if (mapa[x][y] == 'M') {
-        printf("BOOM! Trafiles na mine. Gra skonczona!\n");
-        exit(0); // Koniec gry
+        printf("Trafiles na mine. Gra skonczona!\n");
+        exit(0);
     } else if (mapa[x][y] == '.') {
-        mapa[x][y] = 'O'; // Odkryj pole
+        mapa[x][y] = 'O';
     } else if (mapa[x][y] == 'F') {
         printf("Pole oznaczone flaga!\n");
     } else {
