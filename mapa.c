@@ -66,28 +66,6 @@ void generujMape(int wiersze, int kolumny, int miny) {
         mapa[x][y] = 'M';
     }
 
-    wypiszMape(mapa, wiersze, kolumny);
-
-    int x, y;
-    char akcja;
-    while (1) {
-        printf("Podaj ruch (f x y - flaga, r x y - odkrycie, q - wyjscie): ");
-        scanf(" %c %d %d", &akcja, &x, &y);
-
-        if (akcja == 'q') {
-            break;
-        }
-
-        wykonajRuch(mapa, wiersze, kolumny, x, y, akcja);
-        wypiszMape(mapa, wiersze, kolumny);
-    }
-
-    for (int i = 0; i < wiersze; i++) {
-        free(mapa[i]);
-    }
-    free(mapa);
-}
-
 void wypiszMape(char **mapa, int wiersze, int kolumny) {
     for (int i = 0; i < wiersze; i++) {
         for (int j = 0; j < kolumny; j++) {
