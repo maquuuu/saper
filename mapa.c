@@ -124,8 +124,9 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
         scanf("%s", nazwaGracza);
     FILE *plik = fopen("leaderboard.txt", "a");
         if (plik) {
-            fprintf(plik, "Gracz: %s  \n",
-                    nazwaGracza);
+            fprintf(plik, "Gracz: %s | Wynik: %d \n",
+                    nazwaGracza,
+                    odsłonietePola*poziomTrudnosci);
             fclose(plik);
             printf("Twój wynik został zapisany w pliku leaderboard.txt.\n");
         } else {
