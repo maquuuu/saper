@@ -22,19 +22,19 @@ int liczMiny(char **mapa, int wiersze, int kolumny, int x, int y) {
     return liczbaMin;
 }
 
-void odkryjPole(char **mapa, int wiersze, int kolumny, int x, int y, int *koniecGry, int *ods³onietePola) {
+void odkryjPole(char **mapa, int wiersze, int kolumny, int x, int y, int *koniecGry, int *odslonietePola) {
     if (mapa[x][y] == '.') {
-        rozszerzOdkrycie(mapa, wiersze, kolumny, x, y, koniecGry, ods³onietePola);
+        rozszerzOdkrycie(mapa, wiersze, kolumny, x, y, koniecGry, odslonietePola);
     } else if (mapa[x][y] == 'F') {
-        printf("Pole oznaczone flag¹!\n");
+        printf("Pole oznaczone flag!\n");
     } else if (mapa[x][y] == 'M') {
         *koniecGry = 1;
     } else {
-        printf("To pole jest ju¿ odkryte!\n");
+        printf("To pole jest juz odkryte!\n");
     }
 }
 
-void rozszerzOdkrycie(char **mapa, int wiersze, int kolumny, int x, int y, int *koniecGry, int *ods³onietePola) {
+void rozszerzOdkrycie(char **mapa, int wiersze, int kolumny, int x, int y, int *koniecGry, int *odslonietePola) {
     if (x < 0 || x >= wiersze || y < 0 || y >= kolumny || mapa[x][y] != '.') {
         return;
     }
@@ -42,7 +42,7 @@ void rozszerzOdkrycie(char **mapa, int wiersze, int kolumny, int x, int y, int *
     int liczbaMin = liczMiny(mapa, wiersze, kolumny, x, y);
     mapa[x][y] = '0' + liczbaMin;
 
-    (*ods³onietePola)++;
+    (*odslonietePola)++;
 
     if (liczbaMin == 0) {
         for (int i = -1; i <= 1; i++) {
@@ -51,7 +51,7 @@ void rozszerzOdkrycie(char **mapa, int wiersze, int kolumny, int x, int y, int *
                 int ny = y + j;
 
                 if (nx >= 0 && nx < wiersze && ny >= 0 && ny < kolumny && mapa[nx][ny] == '.') {
-                    rozszerzOdkrycie(mapa, wiersze, kolumny, nx, ny, koniecGry, ods³onietePola);
+                    rozszerzOdkrycie(mapa, wiersze, kolumny, nx, ny, koniecGry, odslonietePola);
                 }
             }
         }
@@ -64,9 +64,9 @@ void ustawFlage(char **mapa, int x, int y) {
         printf("Flaga ustawiona na polu (%d, %d)\n", x, y);
     } else if (mapa[x][y] == 'F') {
         mapa[x][y] = '.';
-        printf("Flaga usuniêta z pola (%d, %d)\n", x, y);
+        printf("Flaga usunieta z pola (%d, %d)\n", x, y);
     } else {
-        printf("To pole jest ju¿ odkryte , nie mo¿na ustawiæ flagi.\n");
+        printf("To pole jest juz odkryte , nie mozna ustawic flagi.\n");
     }
 }
 

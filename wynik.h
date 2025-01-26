@@ -1,7 +1,7 @@
 #ifndef WYNIK_H
 #define WYNIK_H
 
-void obliczWynik(int ods³onietePola, int poziomTrudnosci);
+void obliczWynik(int odslonietePola, int poziomTrudnosci);
 void najlepsiGracze();
 #endif
 

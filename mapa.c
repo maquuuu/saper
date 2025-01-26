@@ -28,7 +28,7 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
         printf("Podaj ruch (f x y - flaga, r x y - odkrycie): ");
         scanf(" %c %d %d", &akcja, &y, &x);
         if (x < 0 || x >= kolumny || y < 0 || y >= wiersze) {
-    printf("Nieprawidłowe współrzędne! Podaj wartości w zakresie: 0 <= x < %d i 0 <= y < %d.\n", kolumny, wiersze);
+    printf("Nieprawidlowe wspolrzedne! Podaj wartości w zakresie: 0 <= x < %d i 0 <= y < %d.\n", kolumny, wiersze);
     continue;
 	}
         if (akcja == 'q') {
@@ -48,13 +48,13 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
         wypiszMape(mapa, wiersze, kolumny, koniecGry);
         obliczWynik(odsłonietePola, poziomTrudnosci);
         if (odsłonietePola == wiersze * kolumny - miny) {
-            printf("Gratulacje! Wygrałeś!\n");
+            printf("Gratulacje! Wygrales!\n");
             koniecGry = 1;
         }
     }
    printf("Koniec gry!\n");
     char nazwaGracza[50];
-        printf("Podaj swoją nazwę gracza: ");
+        printf("Podaj swoja nazwe gracza: ");
         scanf("%s", nazwaGracza);
     FILE *plik = fopen("leaderboard.txt", "a");
         if (plik) {
@@ -62,9 +62,9 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
                     nazwaGracza,
                     odsłonietePola*poziomTrudnosci);
             fclose(plik);
-            printf("Twój wynik został zapisany w pliku leaderboard.txt.\n");
+            printf("Twoj wynik zostal zapisany w pliku leaderboard.txt.\n");
         } else {
-            printf("Nie udało się zapisać wyniku do pliku.\n");
+            printf("Nie udalo się zapisac wyniku do pliku.\n");
         }
         najlepsiGracze();
     for (int i = 0; i < wiersze; i++) {

@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     printf("1. Latwy (9x9)\n");
     printf("2. Sredni (16x16)\n");
     printf("3. Trudny (16x30)\n");
-    printf("4. W³asny (kxw)\n");
+    printf("4. Wlasny (kxw)\n");
 
     while ((opcja = getopt(argc, argv, "1234")) != -1) {
         switch (opcja) {
@@ -32,27 +32,27 @@ int main(int argc, char *argv[]) {
                 tryb_wlasny = 1;
                 break;
             default:
-                printf("Nieprawidlowy wybór!\n");
+                printf("Nieprawidlowy wybor!\n");
                 return 1;
         }
     }
 
     if (tryb_wlasny) {
-        printf("Wybra³eœ tryb w³asny.\n");
+        printf("Wybrales tryb wlasny.\n");
         while (kolumny <= 0) {
-            printf("Podaj liczbê kolumn (wiêksz¹ od 0): ");
+            printf("Podaj liczbe kolumn (wieksze od 0): ");
             scanf("%d", &kolumny);
         }
         while (wiersze <= 0) {
-            printf("Podaj liczbê wierszy (wiêksz¹ od 0): ");
+            printf("Podaj liczbe wierszy (wieksze od 0): ");
             scanf("%d", &wiersze);
         }
         while (miny <= 0 || miny >= wiersze * kolumny) {
-            printf("Podaj liczbê min (wiêksz¹ od 0 i mniejsz¹ ni¿ liczba pól %d): ", wiersze * kolumny);
+            printf("Podaj liczbe min (wieksze od 0 i mniejsze niz liczba pól %d): ", wiersze * kolumny);
             scanf("%d", &miny);
         }
         if (wiersze == 0 || kolumny == 0 || miny == 0) {
-            printf("Nieprawid³owy wybór!");
+            printf("Nieprawidlowy wybor!");
             return 1;
         } else {
             generujMape(wiersze, kolumny, miny, 0);

@@ -1,0 +1,4 @@
+Gracz: maq | Wynik: 61
+Gracz: mat | Wynik: 44
+Gracz: maq | Wynik: 68
+Gracz: maqu | Wynik: 6

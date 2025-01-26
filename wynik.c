@@ -6,14 +6,14 @@
 #include "common.h"
 #include "interak.h"
 
-void obliczWynik(int ods³onietePola, int poziomTrudnosci) {
-    int wynik = ods³onietePola* poziomTrudnosci;
+void obliczWynik(int odslonietePola, int poziomTrudnosci) {
+    int wynik = odslonietePola* poziomTrudnosci;
     printf("Aktualny wynik: %d\n", wynik);
 }
 void najlepsiGracze() {
     FILE *plik = fopen("leaderboard.txt", "r");
     if (!plik) {
-        printf("Nie uda³o siê otworzyæ pliku leaderboard.txt.\n");
+        printf("Nie udalo sie otworzyc pliku leaderboard.txt.\n");
         return;
     }
 
@@ -29,7 +29,7 @@ void najlepsiGracze() {
             break;
         }
     } else {
-        printf("Nieprawid³owy format: %s\n", linia);
+        printf("Nieprawidlowy format: %s\n", linia);
     }
 }
     fclose(plik);
@@ -52,9 +52,9 @@ void najlepsiGracze() {
         return;
     }
     printf("=== Najlepsi gracze ===\n");
-    printf("dasdaw%d\n", liczbaGraczy);
+    printf("%d\n", liczbaGraczy);
     int top = liczbaGraczy < 5 ? liczbaGraczy : 5;
     for (int i = 0; i < top; i++) {
-        printf("%d. %s - %d punktów\n", i + 1, nazwy[i], wyniki[i]);
+        printf("%d. %s - %d punktow\n", i + 1, nazwy[i], wyniki[i]);
     }
 }
