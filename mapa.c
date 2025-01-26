@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "dzialanie.h"
 
 #define LATWY_WIERSZE 9
 #define LATWY_KOLUMNY 9
@@ -15,42 +14,73 @@
 #define TRUDNY_KOLUMNY 30
 #define TRUDNY_MINY 99
 
-void generujMape(int wiersze, int kolumny, int miny);
+char **generujMape(int wiersze, int kolumny, int miny);
 void wypiszMape(char **mapa, int wiersze, int kolumny);
+void zwolnijMape(char **mapa, int wiersze);
 
 int main() {
     int wybor;
+    int wiersze, kolumny, miny;
+    char **mapa;
 
     printf("Wybierz poziom trudnosci:\n");
     printf("1. Latwy (9x9, 10 min)\n");
     printf("2. Sredni (16x16, 40 min)\n");
     printf("3. Trudny (16x30, 99 min)\n");
     printf("Podaj numer: ");
-
-    scanf("%d", &wybor);
+    if (scanf("%d", &wybor) != 1) {
+        fprintf(stderr, "Błąd: nieprawidłowe dane wejściowe!\n");
+        return 1;
+    }
 
     switch (wybor) {
         case 1:
-            generujMape(LATWY_WIERSZE, LATWY_KOLUMNY, LATWY_MINY);
+            wiersze = LATWY_WIERSZE;
+            kolumny = LATWY_KOLUMNY;
+            miny = LATWY_MINY;
             break;
         case 2:
-            generujMape(SREDNI_WIERSZE, SREDNI_KOLUMNY, SREDNI_MINY);
+            wiersze = SREDNI_WIERSZE;
+            kolumny = SREDNI_KOLUMNY;
+            miny = SREDNI_MINY;
             break;
         case 3:
-            generujMape(TRUDNY_WIERSZE, TRUDNY_KOLUMNY, TRUDNY_MINY);
+            wiersze = TRUDNY_WIERSZE;
+            kolumny = TRUDNY_KOLUMNY;
+            miny = TRUDNY_MINY;
             break;
         default:
             printf("Nieprawidlowy wybor!\n");
             return 1;
     }
 
+    mapa = generujMape(wiersze, kolumny, miny);
+    if (mapa == NULL) {
+        fprintf(stderr, "Błąd: nie udało się utworzyć mapy!\n");
+        return 1;
+    }
+
+    wypiszMape(mapa, wiersze, kolumny);
+
+    zwolnijMape(mapa, wiersze);
+
     return 0;
 }
 
-void generujMape(int wiersze, int kolumny, int miny) {
+char **generujMape(int wiersze, int kolumny, int miny) {
     char **mapa = malloc(wiersze * sizeof(char *));
+    if (mapa == NULL) {
+        fprintf(stderr, "Błąd: nie udało się przydzielić pamięci dla wierszy mapy!\n");
+        return NULL;
+    }
+
     for (int i = 0; i < wiersze; i++) {
         mapa[i] = malloc(kolumny * sizeof(char));
+        if (mapa[i] == NULL) {
+            fprintf(stderr, "Błąd: nie udało się przydzielić pamięci dla kolumn mapy w wierszu %d!\n", i);
+            zwolnijMape(mapa, i);
+            return NULL;
+        }
         for (int j = 0; j < kolumny; j++) {
             mapa[i][j] = '.';
         }
@@ -66,6 +96,9 @@ void generujMape(int wiersze, int kolumny, int miny) {
         mapa[x][y] = 'M';
     }
 
+    return mapa;
+}
+
 void wypiszMape(char **mapa, int wiersze, int kolumny) {
     for (int i = 0; i < wiersze; i++) {
         for (int j = 0; j < kolumny; j++) {
@@ -77,4 +110,11 @@ void wypiszMape(char **mapa, int wiersze, int kolumny) {
         }
         printf("\n");
     }
+}
+
+void zwolnijMape(char **mapa, int wiersze) {
+    for (int i = 0; i < wiersze; i++) {
+        free(mapa[i]);
+    }
+    free(mapa);
 }
