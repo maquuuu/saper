@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "dzialanie.h"
 
 #define LATWY_WIERSZE 9
 #define LATWY_KOLUMNY 9
