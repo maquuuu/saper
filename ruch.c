@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dzialanie.h"
-
+#include "mapa.h"
 void poruszajSie(char **mapa, int wiersze, int kolumny) {
     int x = 0, y = 0;
     char akcja;
