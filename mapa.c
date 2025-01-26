@@ -15,14 +15,14 @@
 #define TRUDNY_KOLUMNY 30
 #define TRUDNY_MINY 99
 
-char **generujMape(int wiersze, int kolumny, int miny);
+void generujMape(char ***mapa, int wiersze, int kolumny, int miny);
 void wypiszMape(char **mapa, int wiersze, int kolumny);
 void zwolnijMape(char **mapa, int wiersze);
 
 int main() {
     int wybor;
     int wiersze, kolumny, miny;
-    char **mapa;
+    char **mapa = NULL;
 
     printf("Wybierz poziom trudnosci:\n");
     printf("1. Latwy (9x9, 10 min)\n");
@@ -55,7 +55,7 @@ int main() {
             return 1;
     }
 
-    mapa = generujMape(wiersze, kolumny, miny);
+    generujMape(&mapa, wiersze, kolumny, miny);
     if (mapa == NULL) {
         fprintf(stderr, "Błąd: nie udało się utworzyć mapy!\n");
         return 1;
@@ -68,22 +68,23 @@ int main() {
     return 0;
 }
 
-char **generujMape(int wiersze, int kolumny, int miny) {
-    char **mapa = malloc(wiersze * sizeof(char *));
-    if (mapa == NULL) {
+void generujMape(char ***mapa, int wiersze, int kolumny, int miny) {
+    *mapa = malloc(wiersze * sizeof(char *));
+    if (*mapa == NULL) {
         fprintf(stderr, "Błąd: nie udało się przydzielić pamięci dla wierszy mapy!\n");
-        return NULL;
+        return;
     }
 
     for (int i = 0; i < wiersze; i++) {
-        mapa[i] = malloc(kolumny * sizeof(char));
-        if (mapa[i] == NULL) {
+        (*mapa)[i] = malloc(kolumny * sizeof(char));
+        if ((*mapa)[i] == NULL) {
             fprintf(stderr, "Błąd: nie udało się przydzielić pamięci dla kolumn mapy w wierszu %d!\n", i);
-            zwolnijMape(mapa, i);
-            return NULL;
+            zwolnijMape(*mapa, i);
+            *mapa = NULL;
+            return;
         }
         for (int j = 0; j < kolumny; j++) {
-            mapa[i][j] = '.';
+            (*mapa)[i][j] = '.';
         }
     }
 
@@ -93,11 +94,9 @@ char **generujMape(int wiersze, int kolumny, int miny) {
         do {
             x = rand() % wiersze;
             y = rand() % kolumny;
-        } while (mapa[x][y] == 'M');
-        mapa[x][y] = 'M';
+        } while ((*mapa)[x][y] == 'M');
+        (*mapa)[x][y] = 'M';
     }
-
-    return mapa;
 }
 
 void wypiszMape(char **mapa, int wiersze, int kolumny) {
