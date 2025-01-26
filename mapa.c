@@ -22,12 +22,15 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
     char akcja;
     int pierwszeOdkrycie = 1;
     int koniecGry = 0;
-    int ods≥onietePola = 0;
+    int ods≈ÇonietePola = 0;
 
     while (!koniecGry) {
         printf("Podaj ruch (f x y - flaga, r x y - odkrycie): ");
         scanf(" %c %d %d", &akcja, &y, &x);
-
+        if (x < 0 || x >= kolumny || y < 0 || y >= wiersze) {
+    printf("Nieprawid≈Çowe wsp√≥≈Çrzƒôdne! Podaj warto≈õci w zakresie: 0 <= x < %d i 0 <= y < %d.\n", kolumny, wiersze);
+    continue;
+	}
         if (akcja == 'q') {
             break;
         }
@@ -38,30 +41,30 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
                 pierwszeOdkrycie = 0;
             }
 
-            wykonajRuch(mapa, wiersze, kolumny, x, y, akcja, &koniecGry, &ods≥onietePola);
+            wykonajRuch(mapa, wiersze, kolumny, x, y, akcja, &koniecGry, &ods≈ÇonietePola);
         } else if (akcja == 'f') {
-            wykonajRuch(mapa, wiersze, kolumny, x, y, akcja, &koniecGry, &ods≥onietePola);
+            wykonajRuch(mapa, wiersze, kolumny, x, y, akcja, &koniecGry, &ods≈ÇonietePola);
         }
         wypiszMape(mapa, wiersze, kolumny, koniecGry);
-        obliczWynik(ods≥onietePola, poziomTrudnosci);
-        if (ods≥onietePola == wiersze * kolumny - miny) {
-            printf("Gratulacje! Wygra≥eú!\n");
+        obliczWynik(ods≈ÇonietePola, poziomTrudnosci);
+        if (ods≈ÇonietePola == wiersze * kolumny - miny) {
+            printf("Gratulacje! Wygra≈Çe≈õ!\n");
             koniecGry = 1;
         }
     }
    printf("Koniec gry!\n");
     char nazwaGracza[50];
-        printf("Podaj swojπ nazwÍ gracza: ");
+        printf("Podaj swojƒÖ nazwƒô gracza: ");
         scanf("%s", nazwaGracza);
     FILE *plik = fopen("leaderboard.txt", "a");
         if (plik) {
             fprintf(plik, "Gracz: %s | Wynik: %d\n",
                     nazwaGracza,
-                    ods≥onietePola*poziomTrudnosci);
+                    ods≈ÇonietePola*poziomTrudnosci);
             fclose(plik);
-            printf("TwÛj wynik zosta≥ zapisany w pliku leaderboard.txt.\n");
+            printf("Tw√≥j wynik zosta≈Ç zapisany w pliku leaderboard.txt.\n");
         } else {
-            printf("Nie uda≥o siÍ zapisaÊ wyniku do pliku.\n");
+            printf("Nie uda≈Ço siƒô zapisaƒá wyniku do pliku.\n");
         }
         najlepsiGracze();
     for (int i = 0; i < wiersze; i++) {
