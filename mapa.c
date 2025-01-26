@@ -119,6 +119,7 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
             koniecGry = 1;
         }
     }
+printf("Koniec gry!\n");
     char nazwaGracza[50];
         printf("Podaj swoją nazwę gracza: ");
         scanf("%s", nazwaGracza);
@@ -132,7 +133,6 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
         } else {
             printf("Nie udało się zapisać wyniku do pliku.\n");
         }
-    printf("Koniec gry!\n");
     for (int i = 0; i < wiersze; i++) {
         free(mapa[i]);
     }
