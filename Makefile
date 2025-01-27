@@ -5,7 +5,7 @@ TARGET = saper
 CC = gcc
 
 # Opcje kompilacji
-CFLAGS = -Wall -Wextra -std=c11 -g
+CFLAGS = -Wall -Wextra -std=gnu99 -g
 
 # Pliki źródłowe
 SRCS = main.c mapa.c wynik.c ruch.c interak.c zapis.c
