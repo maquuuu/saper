@@ -46,28 +46,39 @@ int main(int argc, char *argv[]) {
         wczytajZPliku(plik);
         return 0;
     }
-    if (tryb_wlasny) {
-        printf("Wybrales tryb wlasny.\n");
-        while (kolumny <= 0) {
-            printf("Podaj liczbe kolumn (wieksze od 0): ");
-            scanf("%d", &kolumny);
-        }
-        while (wiersze <= 0) {
-            printf("Podaj liczbe wierszy (wieksze od 0): ");
-            scanf("%d", &wiersze);
-        }
-        while (miny <= 0 || miny >= wiersze * kolumny) {
-            printf("Podaj liczbe min (wieksze od 0 i mniejsze niz liczba pol %d): ", wiersze * kolumny);
-            scanf("%d", &miny);
-        }
-        if (wiersze == 0 || kolumny == 0 || miny == 0) {
-            printf("Nieprawidlowy wybor!");
-            return 1;
-        } else {
-            generujMape(wiersze, kolumny, miny, 0);
+   if (tryb_wlasny) {
+    printf("Wybrales tryb wlasny.\n");
+    while (kolumny <= 0) {
+        printf("Podaj liczbe kolumn (wieksze od 0): ");
+        if (scanf("%d", &kolumny) != 1) {
+            printf("Niepoprawny format! Podaj liczbe calkowita.\n");
+            while (getchar() != '\n');
+            kolumny = 0;
         }
     }
+    while (wiersze <= 0) {
+        printf("Podaj liczbe wierszy (wieksze od 0): ");
+        if (scanf("%d", &wiersze) != 1) {
+            printf("Niepoprawny format! Podaj liczbe calkowita.\n");
+            while (getchar() != '\n');
+            wiersze = 0;
+        }
+    }
+    while (miny <= 0 || miny >= wiersze * kolumny) {
+        printf("Podaj liczbe min (wieksze od 0 i mniejsze niz liczba pol %d): ", wiersze * kolumny);
+        if (scanf("%d", &miny) != 1) {
+            printf("Niepoprawny format! Podaj liczbe calkowita.\n");
+            while (getchar() != '\n');
+            miny = 0;
+        }
+    }
+    if (wiersze == 0 || kolumny == 0 || miny == 0) {
+        printf("Nieprawidlowy wybor!");
+        return 1;
+    } else {
+        generujMape(wiersze, kolumny, miny, 0);
+    }
+}
 
     return 0;
 }
-
