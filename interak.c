@@ -28,7 +28,6 @@ void odkryjPole(char **mapa, char**widocznaMapa, int wiersze, int kolumny, int x
     } else if (widocznaMapa[x][y] == 'F') {
         printf("Pole oznaczone flaga!\n");
     } else if (mapa[x][y] == 'M') {
-        printf("Bum! Trafiles na mine!\n");
         *koniecGry = 1;
     } else {
         printf("To pole jest juz odkryte!\n");
