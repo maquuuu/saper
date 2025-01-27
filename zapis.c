@@ -112,9 +112,11 @@ void wczytajZPliku(const char *nazwaPliku) {
 
 void zapiszMapeDoPliku(char **mapa, int wiersze, int kolumny) {
     char nazwaPliku[100];
-    printf("Podaj nazwę pliku, do ktorego chcesz zapisac mape (jesli nie chcesz zapisywac nacisnij: ");
+    printf("Podaj nazwę pliku, do ktorego chcesz zapisac mape (jesli nie chcesz zapisywac nacisnij 'q': ");
     scanf("%s", nazwaPliku);
-
+    if (strcmp(nazwaPliku, "q") == 0){
+    return;
+    }
     FILE *plik = fopen(nazwaPliku, "w");
     if (plik == NULL) {
         printf("Nie udalo sie otworzyc pliku do zapisu.\n");
