@@ -150,5 +150,5 @@ void zapiszMapeDoPliku(char **mapa, int wiersze, int kolumny) {
     fprintf(plik, "-\n");
 
     fclose(plik);
-    printf("Mapa została zapisana w pliku: %s\n", nazwaPliku);
+    printf("Mapa zostala zapisana w pliku: %s\n", nazwaPliku);
 }
