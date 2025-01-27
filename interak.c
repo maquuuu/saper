@@ -24,7 +24,7 @@ int liczMiny(char **mapa, int wiersze, int kolumny, int x, int y) {
 
 void odkryjPole(char **mapa, char**widocznaMapa, int wiersze, int kolumny, int x, int y, int *koniecGry, int *odslonietePola) {
     if (mapa[x][y] == '.') {
-        rozszerzOdkrycie(mapa, widocznaMapa, wiersze, kolumny, x, y, koniecGry, odslonietePola);
+        rozszerzOdkrycie(mapa, wiersze, kolumny, x, y, koniecGry, odslonietePola);
     } else if (widocznaMapa[x][y] == 'F') {
         printf("Pole oznaczone flaga!\n");
     } else if (mapa[x][y] == 'M') {
@@ -35,7 +35,7 @@ void odkryjPole(char **mapa, char**widocznaMapa, int wiersze, int kolumny, int x
 }
 
 
-void rozszerzOdkrycie(char **mapa, char**widocznaMapa, int wiersze, int kolumny, int x, int y, int *koniecGry, int *odslonietePola) {
+void rozszerzOdkrycie(char **mapa, int wiersze, int kolumny, int x, int y, int *koniecGry, int *odslonietePola) {
     if (x < 0 || x >= wiersze || y < 0 || y >= kolumny || mapa[x][y] != '.') {
         return;
     }
@@ -52,7 +52,7 @@ void rozszerzOdkrycie(char **mapa, char**widocznaMapa, int wiersze, int kolumny,
                 int ny = y + j;
 
                 if (nx >= 0 && nx < wiersze && ny >= 0 && ny < kolumny && mapa[nx][ny] == '.') {
-                    rozszerzOdkrycie(mapa, widocznaMapa, wiersze, kolumny, nx, ny, koniecGry, odslonietePola);
+                    rozszerzOdkrycie(mapa, wiersze, kolumny, nx, ny, koniecGry, odslonietePola);
                 }
             }
         }
