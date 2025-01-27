@@ -31,7 +31,7 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
     int wygrana = 0;
     int pierwszeOdkrycie = 1;
     int koniecGry = 0;
-    int odsĹ‚onietePola = 0;
+    int odslonietePola = 0;
 
     while (!koniecGry) {
         printf("Podaj ruch (f x y - flaga, r x y - odkrycie): ");
@@ -54,17 +54,17 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
                 pierwszeOdkrycie = 0;
             }
 
-            wykonajRuch(mapa, widocznaMapa, wiersze, kolumny, x, y, akcja, &koniecGry, &odsĹ‚onietePola);
+            wykonajRuch(mapa, widocznaMapa, wiersze, kolumny, x, y, akcja, &koniecGry, &odslonietePola);
         } else if (akcja == 'f') {
-            wykonajRuch(mapa, widocznaMapa, wiersze, kolumny, x, y, akcja, &koniecGry, &odsĹ‚onietePola);
+            wykonajRuch(mapa, widocznaMapa, wiersze, kolumny, x, y, akcja, &koniecGry, &odslonietePola);
         }
         else if(akcja != 'f' || akcja != 'r' || akcja != 'q') {
             printf("Nieprawidlowa komenda.\n");
             continue;
         }
         wypiszMape(mapa, widocznaMapa, wiersze, kolumny, koniecGry);
-        obliczWynik(odsĹ‚onietePola, poziomTrudnosci);
-        if (odsĹ‚onietePola == wiersze * kolumny - miny) {
+        obliczWynik(odslonietePola, poziomTrudnosci);
+        if (odslonietePola == wiersze * kolumny - miny) {
             printf("Gratulacje! Wygrales!\n");
             koniecGry = 1;
             wygrana = 1;
@@ -74,7 +74,7 @@ void generujMape(int wiersze, int kolumny, int miny, int poziomTrudnosci) {
         printf("Bum! Trafiles na mine!\n");
 	}
     printf("Koniec gry!\n");
-        zapiszLeaderboard(odsĹ‚onietePola, poziomTrudnosci);
+        zapiszLeaderboard(odslonietePola, poziomTrudnosci);
         najlepsiGracze();
         zapiszMapeDoPliku(mapa, wiersze, kolumny);
     for (int i = 0; i < wiersze; i++) {
