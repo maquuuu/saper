@@ -1,8 +1,8 @@
 #ifndef WYNIK_H
 #define WYNIK_H
 
-// Funkcja do obliczania i wyświetlania wyniku
-void obliczWynik(int odsłonietePola, int poziomTrudnosci);
+void obliczWynik(int odslonietePola, int poziomTrudnosci);
+void zapiszLeaderboard(int odslonietePola, int poziomTrudnosci);
+void najlepsiGracze();
 
 #endif
-
