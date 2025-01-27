@@ -39,7 +39,7 @@ void wczytajZPliku(const char *nazwaPliku) {
 
     char **mapa = malloc(wiersze * sizeof(char *));
     if (!mapa) {
-        printf("Blad alokacji pamięci dla mapy.\n");
+        printf("Blad alokacji pamieci dla mapy.\n");
         fclose(plik);
         return;
     }
@@ -112,7 +112,7 @@ void wczytajZPliku(const char *nazwaPliku) {
 
 void zapiszMapeDoPliku(char **mapa, int wiersze, int kolumny) {
     char nazwaPliku[100];
-    printf("Podaj nazwę pliku, do ktorego chcesz zapisac mape (jesli nie chcesz zapisywac nacisnij 'q': ");
+    printf("Podaj nazwe pliku, do ktorego chcesz zapisac mape (jesli nie chcesz zapisywac nacisnij 'q': ");
     scanf("%s", nazwaPliku);
     if (strcmp(nazwaPliku, "q") == 0){
     return;
